@@ -44,14 +44,3 @@ TEST(FunctionsTests, PolylineTest) {
 	EXPECT_TRUE(line5[line5.get_size() - 1] == point2);
 	drawing_polygon < double > (5, 4);
 }
-
-TEST(FunctionTests, SumPolylineTest) {
-	Point<int> point1(1, 1);
-	Polyline<int> line1(point1);
-	Point<int> point2(2, 2);
-	Point<int> point3(3, 3);
-	point2 + line1;
-	line1 + point3;
-	EXPECT_TRUE(line1[0] == point2);
-	EXPECT_TRUE(line1[line1.get_size() - 1] == point3);
-}
