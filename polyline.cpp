@@ -45,7 +45,7 @@ namespace polyline {
 
 	template<typename U>
 	double len(Point<complex<U>>& a, Point<complex<U>>& b) {
-		return sqrt(pow(a.get_x().real() - b.get_x().real(), 2) + pow(a.get_y().real() - b.get_y().real(), 2));
+		return fabs(sqrt(pow(a.get_x().real() - b.get_x().real(), 2) + pow(a.get_y().real() - b.get_y().real(), 2)));
 	}
 	template<typename T>
 	double len(Point<T>& a, Point<T>& b) {
