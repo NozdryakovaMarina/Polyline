@@ -63,6 +63,7 @@ namespace polyline {
 	private:
 		Point<T>* _data;
 		size_t _size;
+		const double epsilon = 0.0001;
 	public:
 		Polyline() {
 			_data = nullptr;
@@ -103,7 +104,7 @@ namespace polyline {
 			if (_size != a._size)
 				return false;
 			for (int i = 0; i < _size; ++i) {
-				if (!(_data[i] == a[i]))
+				if (fabs(_data[i] - a[i]) > epsilon)
 					return false;
 			}
 			return true;
@@ -185,7 +186,7 @@ namespace polyline {
 		return line;
 	}
 	template<typename T>
-	Polyline<T>& operator+=(Polyline<T>& line, Point<T>& point) {
+	Polyline<T>& operator+(Polyline<T>& line, Point<T>& point) {
 		line.push_back(point);
 		return line;
 	}
