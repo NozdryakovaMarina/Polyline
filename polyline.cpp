@@ -100,7 +100,7 @@ namespace polyline {
 			return *this;
 		}
 
-		bool operator==(Polyline<T>& a) {
+		bool operator==(Polyline<T>& a) const {
 			if (_size != a._size)
 				return false;
 			for (int i = 0; i < _size; ++i) {
@@ -109,6 +109,11 @@ namespace polyline {
 			}
 			return true;
 		}
+
+		bool operator!=(Polyline<T>& a) const {
+			return !(_data == a);
+		}
+
 		Point<T>& operator[](size_t index) const { //writing a polyline vertex by its index
 			if (index >= _size)
 				throw("Index is out of range");
@@ -185,10 +190,27 @@ namespace polyline {
 		line.push_front(point);
 		return line;
 	}
+
 	template<typename T>
 	Polyline<T>& operator+(Polyline<T>& line, Point<T>& point) {
 		line.push_back(point);
 		return line;
+	}
+
+	template<typename T>
+	bool operator==(Polyline<complex<T>>& line1, Polyline<complex<T>>& line2) {
+		if (line1.get_size() != line2.get_size())
+			return false;
+		for (int i = 0; i < line1.get_size(); ++i) {
+			if (line1[i].real() != line2[i].real() || line1[i].imag() != line2[i].imag())
+				return false;
+		}
+		return true;
+	}
+
+	template<typename T>
+	bool operator!=(Polyline<complex<T>>& line1, Polyline<complex<T>>& line2) {
+		return !(line1 == line2);
 	}
 
 	template <typename T>
